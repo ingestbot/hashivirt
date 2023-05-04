@@ -1,0 +1,42 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  keyboard:
+      layout: us
+  network:
+      network:
+          version: 2
+          ethernets:
+              eth0:
+                 dhcp4: yes
+#                 dhcp-identifier: mac
+  storage:
+    layout:
+      name: direct
+  identity:
+    hostname: vagrant
+    username: vagrant
+    password: '$2y$12$zfS.Dpm682guriw6fJ5PXu4Kv7GSs7VYHUPGphQdSnT0wb4Rt1tVS'
+  ssh:
+      install-server: yes
+      authorized-keys: []
+      allow-pw: yes
+  user-data:
+     disable_root: false
+  packages:
+    - bind9-dnsutils
+    - apt-utils
+  early-commands:
+       - cat /cdrom/casper/install-sources.yaml | awk 'NR>1 && /^-/{exit};1' > /run/my-sources.yaml
+       - mount -o ro,bind /run/my-sources.yaml /cdrom/casper/install-sources.yaml
+  late-commands:
+      - |
+        curtin in-target --target=/target -- /bin/bash -c ' \
+            apt-get -y --purge remove linux-firmware; \
+            apt-get -y --purge remove snapd; \
+            apt-get -y autoremove; \
+            apt-get -qq update; \
+            echo "vagrant ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99_vagrant; \
+            exit 0 \
+        '
