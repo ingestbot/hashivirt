@@ -1,3 +1,4 @@
+
 # Hashivirt
 
 The items in this repository demonstrate how to create libvirt based virtual machines using Hashicorp's [Packer](https://developer.hashicorp.com/packer) and [Vagrant](https://developer.hashicorp.com/vagrant). The 
@@ -8,9 +9,9 @@ path without the complexities of reverse engineering.
 
 ## Requirements
 * A functional KVM/libvirt/qemu environment
-* [Hashicorp Packer] (https://developer.hashicorp.com/packer)
-* [Hashicorp Vagrant] (https://developer.hashicorp.com/vagrant)
-* [Libvirt provider for Vagrant (plugin)] (https://github.com/vagrant-libvirt/vagrant-libvirt)
+* [Hashicorp Packer](https://developer.hashicorp.com/packer)
+* [Hashicorp Vagrant](https://developer.hashicorp.com/vagrant)
+* [Libvirt provider for Vagrant (plugin)](https://github.com/vagrant-libvirt/vagrant-libvirt)
 
 ## Quick Start
 
@@ -35,7 +36,7 @@ The username and password for the completed VM is `vagrant/vagrant`
 
 ## Packer
 
-* To see a console of the build process, change 'headless: true', run [XQuartz] (https://www.xquartz.org/) (or similar), 'export DISPLAY=<hostname>:0.0'
+* To see a console of the build process, change 'headless: true', run [XQuartz](https://www.xquartz.org/) (or similar), 'export DISPLAY=<hostname>:0.0'
 * For detailed output of the build, `PACKER_LOG=info packer build packer.json`
 * Once a build has completed succesfully, `vagrant box add output/packer.box --name ubuntu_22.04`
 
@@ -91,12 +92,11 @@ See `machine_virtual_size` in https://vagrant-libvirt.github.io/vagrant-libvirt/
 ### To Resize a Partition
 
 ```
-(echo d; echo ""; echo n; echo ""; echo ""; echo ""; echo "N"; echo w) | fdisk /dev/vda
-resize2fs /dev/vda2
+# (echo d; echo ""; echo n; echo ""; echo ""; echo ""; echo "N"; echo w) | fdisk /dev/vda
+# resize2fs /dev/vda2
 ```
 
-- [https://askubuntu.com/questions/115310/how-to-resize-enlarge-grow-a-non-lvm-ext4-partition
-]()
+- [https://askubuntu.com/questions/115310/how-to-resize-enlarge-grow-a-non-lvm-ext4-partition]()
 - [http://positon.org/resize-an-ext3-ext4-partition]()
 - [https://unix.stackexchange.com/questions/480369/automatize-partition-creation-with-fdisk]()
 
