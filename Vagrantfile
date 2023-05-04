@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
     v.autostart = true
     v.memory = 2048
-    v.machine_virtual_size = 10
+    v.machine_virtual_size = 20
    end
 
    subconfig.vm.provision "shell" do |s|

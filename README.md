@@ -36,7 +36,7 @@ The username and password for the completed VM is `vagrant/vagrant`
 
 ## Packer
 
-* To see a console of the build process, change 'headless: true', run [XQuartz](https://www.xquartz.org/) (or similar), 'export DISPLAY=<hostname>:0.0'
+* To see a console of the build process, change `headless: true`, run [XQuartz](https://www.xquartz.org/) (or similar), `export DISPLAY=<hostname>:0.0`
 * For detailed output of the build, `PACKER_LOG=info packer build packer.json`
 * Once a build has completed succesfully, `vagrant box add output/packer.box --name ubuntu_22.04`
 

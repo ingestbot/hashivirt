@@ -4,9 +4,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 HTTPSERVER="192.168.1.25"
 
-/usr/bin/apt-get -qq update
-/usr/bin/apt-get install -qq -y socat nmap curl vim
-
 groupadd -g 7000 ansible.admin
 useradd -g 7000 -u 7000 ansible.admin
 usermod -a -G sudo ansible.admin

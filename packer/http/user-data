@@ -27,6 +27,13 @@ autoinstall:
   packages:
     - bind9-dnsutils
     - apt-utils
+    - iperf3
+    - curl
+    - socat
+    - nmap
+    - vim
+    - rsync
+    - cron
   early-commands:
        - cat /cdrom/casper/install-sources.yaml | awk 'NR>1 && /^-/{exit};1' > /run/my-sources.yaml
        - mount -o ro,bind /run/my-sources.yaml /cdrom/casper/install-sources.yaml
