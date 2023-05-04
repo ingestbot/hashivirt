@@ -1,0 +1,5 @@
+box_image: 'ubuntu_22.04'
+systems:
+ demo001: 'br25'
+ www003: 'br0'
+ woke012: 'br0'
