@@ -2,3 +2,4 @@ tmp/**
 vagrant.d/**
 Vagrantfile.yaml
 packer/output
+packer/.packer.d

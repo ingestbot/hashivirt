@@ -18,3 +18,4 @@ chmod 700 /home/ansible.admin/.ssh
 chmod 400 /home/ansible.admin/.ssh/authorized_keys
 
 echo 'ansible.admin ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99_ansible_admin
+chmod 640 /etc/sudoers.d/99_ansible_admin

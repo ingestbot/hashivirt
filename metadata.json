@@ -1,0 +1,18 @@
+{
+  "description": "Ubuntu 22.04 tiny (ubuntu-22.04.2-live-server-amd64.iso)",
+  "short_description": "Ubuntu 22.04",
+  "name": "ingestbot/ubuntu22.04",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "providers": [
+        {
+          "checksum": "4e523efee70c13d101426d528b77626d",
+          "checksum_type": "md5",
+          "name": "libvirt",
+          "url": "packer/output/package.box"
+        }
+      ]
+    }
+  ]
+}

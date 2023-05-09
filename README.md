@@ -9,15 +9,16 @@ path without the complexities of reverse engineering.
 
 ## Requirements
 * A functional KVM/libvirt/qemu environment
-* [Hashicorp Packer](https://developer.hashicorp.com/packer)
-* [Hashicorp Vagrant](https://developer.hashicorp.com/vagrant)
+* [Hashicorp Packer](https://developer.hashicorp.com/packer/downloads) (latest version recommended)
+* [Hashicorp Vagrant](https://developer.hashicorp.com/vagrant/downloads) (latest version recommended)
 * [Libvirt provider for Vagrant (plugin)](https://github.com/vagrant-libvirt/vagrant-libvirt)
 
 ## Quick Start
 
 ```
-git clone
-cd vagrant/packer
+cd /usr/local
+git clone https://github.com/ingestbot/hashivirt.git
+cd hashivirt/packer
 vi packer.json (define `iso_checksum` with `md5sum` and location of Ubuntu ISO)
 
       "iso_checksum": "33993f79ba694f1dba9fcf89f11257ea",
@@ -26,6 +27,7 @@ vi packer.json (define `iso_checksum` with `md5sum` and location of Ubuntu ISO)
 packer build packer.json
 vagrant box add output/package.box --name ubuntu_22.04
 cd ..
+cp Vagrant.yaml.example Vagrant.yaml
 vi Vagrant.yaml (define NIC, hostname(s), and Vagrant box name)
 vagrant up <hostname>
 ```
@@ -45,27 +47,29 @@ The username and password for the completed VM is `vagrant/vagrant`
 * These environment variables may be desired:
 
 ```
-VAGRANT_DOTFILE_PATH=/usr/local/vagrant/vagrant.d   
-VAGRANT_HOME=/usr/local/vagrant/vagrant.d
+VAGRANT_DOTFILE_PATH=/usr/local/hashivirt/vagrant.d   
+VAGRANT_HOME=/usr/local/hashivirt/vagrant.d
 ```
 
 * Add one or more hostnames to Vagrant.yaml. The names must resolve for provision/netplan.yaml.eth.sh to create a functional definition.
-* For detailed output of the the process: `VAGRANT_LOG=info vagrant up`
+* For detailed output of the process: `VAGRANT_LOG=info vagrant up`
 
 ## Autoinstall
 
-* BOTH `http/user-data` and `http/meta-data` must be present for autoinstall to properly function. The `http/meta-data` file can be blank.
+* BOTH `packer/http/user-data` and `packer/http/meta-data` must be present for autoinstall to properly function. The `packer/http/meta-data` file can be blank.
 
 ## Issues
 
-- One of these options must be chosen to get more than one box working through packer -> vagrant
- - note: use 'virt-sysprep --operations defaults,-ssh-hostkeys...'
- - note: dhcp-identifier: mac in netplan
+- One (or both) of these options must be chosen to get more than one box working through packer -> vagrant. Issues with dhcp address allocation and/or sshd not 
+starting will persist if neither of these options are present.
+
+ - Removal of ssh hostkeys in `packer/packer.json` `post-processors`: `virt-sysprep --operations defaults,-ssh-hostkeys...`
+ - Use of `dhcp-identifier: mac` in `packer/http/user-data` 
 
 
 ## Make Tiny
 
-Using the definitions provided here, the VM uses a 1.5G OS storage footprint.
+Using the definitions provided here, the finished VM will have a 1.5G OS storage footprint.
 
 ### Ubuntu minimal
 
@@ -79,12 +83,12 @@ The OS storage footprint is decreased by parsing `/cdrom/casper/install-sources.
 
 ### Disk Size Definition
 
-When modifying `machine_virtual_size` in Vagrant sizes smaller than the size specified by the box metadata (defined in Packer `disk_size`) will be ignored.
+When modifying `machine_virtual_size` in Vagrant be aware that sizes smaller than the size specified by the box metadata (defined in Packer `disk_size`) will be ignored.
 
 - When defining a 25G `disk_size` in Packer and a 10G `machine_virtual_size` in Vagrant the end result will be a 25G disk.
 - When defining a 25G `disk_size` in Packer and a 30G `machine_virtual_size` in Vagrant the end result will be a 25G disk with 5G extendable.
 
-What this means is disk_size must be => machine_virtual_size. If disk_size < machine_virtual_size, the latter will result.
+This means `disk_size` must be => `machine_virtual_size`. If `disk_size` < `machine_virtual_size`, the latter definition will provide the result.
 
 See `machine_virtual_size` in https://vagrant-libvirt.github.io/vagrant-libvirt/configuration.html
 
