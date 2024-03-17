@@ -12,13 +12,17 @@ path without the complexities of reverse engineering.
 * [Hashicorp Packer](https://developer.hashicorp.com/packer/downloads) (latest version recommended)
 * [Hashicorp Vagrant](https://developer.hashicorp.com/vagrant/downloads) (latest version recommended)
 * [Libvirt provider for Vagrant (plugin)](https://github.com/vagrant-libvirt/vagrant-libvirt)
+* An ISO image of desired Operating System (eg, [Ubuntu](https://releases.ubuntu.com))
 
 ## Quick Start
 
 ```
 cd /usr/local
 git clone https://github.com/ingestbot/hashivirt.git
-cd hashivirt/packer
+cd hashivirt
+cp Vagrant.yaml.example Vagrant.yaml
+vi Vagrant.yaml (define NIC, hostname(s), and Vagrant box name)
+cd packer
 vi packer.json (define `iso_checksum` with `md5sum` and location of Ubuntu ISO)
 
       "iso_checksum": "33993f79ba694f1dba9fcf89f11257ea",
@@ -27,8 +31,6 @@ vi packer.json (define `iso_checksum` with `md5sum` and location of Ubuntu ISO)
 packer build packer.json
 vagrant box add output/package.box --name ubuntu_22.04
 cd ..
-cp Vagrant.yaml.example Vagrant.yaml
-vi Vagrant.yaml (define NIC, hostname(s), and Vagrant box name)
 vagrant up <hostname>
 ```
 

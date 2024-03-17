@@ -1,7 +1,14 @@
 #cloud-config
+
+##
+## https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html
+##
+
 autoinstall:
   version: 1
   locale: en_US.UTF-8
+  timezone: America/Los_Angeles
+  proxy: http://proxy.sfio.win:8118
   keyboard:
       layout: us
   network:
@@ -25,6 +32,7 @@ autoinstall:
   user-data:
      disable_root: false
   packages:
+    - iputils-ping
     - bind9-dnsutils
     - apt-utils
     - iperf3

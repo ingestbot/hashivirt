@@ -22,9 +22,9 @@ end
 Vagrant.configure("2") do |config|
  myhostnames.each do |i,x|
   config.vm.define :"#{i}" do |subconfig|
-#   subconfig.vm.box = mybox_image
-   subconfig.vm.box = "ingestbot/ubuntu22.04"
-   subconfig.vm.box_url = "file://./metadata.json"
+   subconfig.vm.box = mybox_image
+#   subconfig.vm.box = "ingestbot/ubuntu22.04"
+#   subconfig.vm.box_url = "file://./metadata.json"
    subconfig.vm.hostname = "#{i}"
    subconfig.ssh.username = "vagrant"
    subconfig.ssh.password = "vagrant"
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
     v.autostart = true
     v.memory = 2048
-    v.machine_virtual_size = 20
+    v.machine_virtual_size = 40
    end
 
    subconfig.vm.provision "shell" do |s|

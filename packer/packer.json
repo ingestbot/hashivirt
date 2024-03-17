@@ -21,8 +21,8 @@
       "http_directory": "http",
 
       "output_directory": "output",
-      "iso_checksum": "33993f79ba694f1dba9fcf89f11257ea",
-      "iso_url": "/ddb2233/ISO/ubuntu-22.04.2-live-server-amd64.iso",
+      "iso_checksum": "125022addbe20d3a9e3b71e04653f67b",
+      "iso_url": "/ddb2233/ISO/ubuntu-22.04.4-live-server-amd64.iso",
 
       "memory": 4096,
       "net_device": "virtio-net",
