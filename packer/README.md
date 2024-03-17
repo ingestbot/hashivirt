@@ -16,8 +16,8 @@ virt-sysprep is needed. Install with 'apt install libguestfs-tools' or 'apt inst
 
 ---
 After building, see:
- # du -sh /var/tmp/.guestfs-0
- 724M	/var/tmp/.guestfs-0
+ `# du -sh /var/tmp/.guestfs-0`
+ `724M	/var/tmp/.guestfs-0`
 
 https://libguestfs.org/guestfs-faq.1.html
  - Libguestfs uses too much disk space!
