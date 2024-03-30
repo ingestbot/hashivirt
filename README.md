@@ -10,9 +10,13 @@ path without the complexities of reverse engineering.
 ## Requirements
 * A functional KVM/libvirt/qemu environment
 * [Hashicorp Packer](https://developer.hashicorp.com/packer/downloads) (latest version recommended)
+* Packer 1.10 does not include plugins, either figure out how to get it working with external plugins or use 1.9:
+   * apt-get install packer=1.9.5-1
 * [Hashicorp Vagrant](https://developer.hashicorp.com/vagrant/downloads) (latest version recommended)
 * [Libvirt provider for Vagrant (plugin)](https://github.com/vagrant-libvirt/vagrant-libvirt)
 * An ISO image of desired Operating System (eg, [Ubuntu](https://releases.ubuntu.com))
+* `virt-sysprep`
+   * `apt-get install libguestfs-tools`
 
 ## Quick Start
 
