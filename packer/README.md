@@ -9,7 +9,7 @@ packer 1.10+ does not include plugins, either figure out how to get it working w
     - apt-get install packer=1.9.5-1
 
 ---
-Must include proxy settings in http/user-data
+Must include proxy settings in http/user-data when behind a proxy.
 
 ---
 virt-sysprep is needed. Install with 'apt install libguestfs-tools' or 'apt install guestfs-tools' 
@@ -21,5 +21,4 @@ After building, see:
  724M	/var/tmp/.guestfs-0
 ```
 
-https://libguestfs.org/guestfs-faq.1.html
- - Libguestfs uses too much disk space!
+See 'Libguestfs uses too much disk space!' https://libguestfs.org/guestfs-faq.1.html
