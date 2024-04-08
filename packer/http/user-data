@@ -21,6 +21,8 @@ autoinstall:
   storage:
     layout:
       name: direct
+    #swap:
+    #  size: 2Gb
   identity:
     hostname: vagrant
     username: vagrant
@@ -34,6 +36,8 @@ autoinstall:
   packages:
     - iputils-ping
     - bind9-dnsutils
+    - telnet
+    - lsof
     - apt-utils
     - iperf3
     - curl
