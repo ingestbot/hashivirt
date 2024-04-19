@@ -19,3 +19,8 @@ chmod 400 /home/ansible.admin/.ssh/authorized_keys
 
 echo 'ansible.admin ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99_ansible_admin
 chmod 640 /etc/sudoers.d/99_ansible_admin
+
+##
+## 4/19/2024 - Disabling cloud-init 
+##
+touch /etc/cloud/cloud-init.disabled

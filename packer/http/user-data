@@ -34,6 +34,12 @@ autoinstall:
   user-data:
      disable_root: false
   packages:
+    - certbot
+    - python3-certbot-dns-cloudflare
+    - ssl-cert
+    - python3-pip
+    - locales
+    - rsyslog
     - iputils-ping
     - bind9-dnsutils
     - telnet
