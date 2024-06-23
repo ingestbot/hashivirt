@@ -3,3 +3,4 @@ vagrant.d/**
 Vagrantfile.yaml
 packer/output
 packer/.packer.d
+provision/ansible.admin.ssh.pub.key

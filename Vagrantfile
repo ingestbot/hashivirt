@@ -49,7 +49,14 @@ Vagrant.configure("2") do |config|
         s.path = "provision/netplan.yaml.eth.sh"
    end
    subconfig.vm.provision "shell" do |s|
-        s.path = "provision/ansible.admin.sh"
+        s.path = "provision/ansible.admin_pre.sh"
+   end
+   subconfig.vm.provision "file" do |s|
+        s.source = "provision/ansible.admin.ssh.pub.key"
+        s.destination = "/tmp/ansible.admin"
+   end
+   subconfig.vm.provision "shell" do |s|
+        s.path = "provision/ansible.admin_post.sh"
    end
    subconfig.vm.provision "shell" do |s|
         s.path = "provision/first.run.sh"

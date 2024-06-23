@@ -18,13 +18,21 @@ fi
 
 # if [ "${MYVLAN}" = 1 ]; then
 
+##
+## 6/22/2024 - When disabling ipv6 an issue was raised with degraded boot/init/start time whereby 
+## systemd-networkd-wait-online.service would timeout/fail. Described here:
+##   https://bugs.launchpad.net/ufw/+bug/2070087
+##
+## The resolution involved removing the unused interface ens5: {} and adding link-local: [ ]
+## 
+
 /bin/cat <<EoM >${NETPLANCONFIG}
 network:
   version: 2
   renderer: networkd
   ethernets:
-    ens5: {}
     ens6:
+      link-local: [ ]
       addresses: [${MYIPADDR}/24]
       routes:
         - to: default

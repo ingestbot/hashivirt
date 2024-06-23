@@ -2,15 +2,8 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-HTTPSERVER="192.168.1.25"
+mv /tmp/ansible.admin /etc/ssh/authorized_keys/ansible.admin
 
-groupadd -g 7000 ansible.admin
-useradd -g 7000 -u 7000 ansible.admin
-usermod -a -G sudo ansible.admin
-
-mkdir /etc/ssh/authorized_keys
-chmod 755 /etc/ssh/authorized_keys
-curl -k -so /etc/ssh/authorized_keys/ansible.admin https://${HTTPSERVER}/admin/ssh/ansible.admin.ssh.pub.key
 chown ansible.admin /etc/ssh/authorized_keys/ansible.admin
 chgrp ansible.admin /etc/ssh/authorized_keys/ansible.admin
 chmod 400 /etc/ssh/authorized_keys/ansible.admin
@@ -23,3 +16,14 @@ chmod 640 /etc/sudoers.d/99_ansible_admin
 ## 4/19/2024 - Disabling cloud-init 
 ##
 touch /etc/cloud/cloud-init.disabled
+
+##
+## 6/7/2024 - Quick hack to enable systemd-resolved
+## 
+echo 'DNS=192.168.1.25 192.168.1.10' >> /etc/systemd/resolved.conf
+echo 'Domains=sfio.win' >> /etc/systemd/resolved.conf
+
+##
+##
+##
+sudo apt-get update
