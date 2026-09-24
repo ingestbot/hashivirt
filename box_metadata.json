@@ -1,0 +1,15 @@
+{
+  "name": "ubuntu_26.04.1-minimal",
+  "description": "Ubuntu 26.04.1 minimal",
+  "versions": [
+    {
+      "version": "26.04.1",
+      "providers": [
+        {
+          "name": "libvirt",
+          "url": "file:///usr/local/vagrant/packer/output/package.box"
+        }
+      ]
+    }
+  ]
+}

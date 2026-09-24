@@ -31,7 +31,8 @@ network:
   version: 2
   renderer: networkd
   ethernets:
-    ens6:
+    # ens6:
+    eth1:
       link-local: [ ]
       addresses: [${MYIPADDR}/24]
       routes:

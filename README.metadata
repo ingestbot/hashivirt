@@ -1,0 +1,3 @@
+
+vagrant box add box_metadata.json
+

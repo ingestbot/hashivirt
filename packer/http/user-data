@@ -6,6 +6,15 @@
 
 autoinstall:
   version: 1
+  source:
+    id: ubuntu-server-minimal
+  snaps: []
+  codecs:
+    install: false
+  drivers:
+    install: false
+  updates: all
+
   locale: en_US.UTF-8
   timezone: America/Los_Angeles
   proxy: http://proxy.sfio.win:8118
@@ -17,12 +26,11 @@ autoinstall:
           ethernets:
               eth0:
                  dhcp4: yes
-#                 dhcp-identifier: mac
   storage:
     layout:
       name: direct
-    #swap:
-    #  size: 2Gb
+    swap:
+      size: 2G
   identity:
     hostname: vagrant
     username: vagrant
@@ -59,10 +67,6 @@ autoinstall:
   late-commands:
       - |
         curtin in-target --target=/target -- /bin/bash -c ' \
-            apt-get -y --purge remove linux-firmware; \
-            apt-get -y --purge remove snapd; \
-            apt-get -y autoremove; \
-            apt-get -qq update; \
             echo "vagrant ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99_vagrant; \
             exit 0 \
         '

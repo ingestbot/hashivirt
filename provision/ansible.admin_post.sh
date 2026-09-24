@@ -23,7 +23,3 @@ touch /etc/cloud/cloud-init.disabled
 echo 'DNS=192.168.1.25 192.168.1.10' >> /etc/systemd/resolved.conf
 echo 'Domains=sfio.win' >> /etc/systemd/resolved.conf
 
-##
-##
-##
-sudo apt-get update
