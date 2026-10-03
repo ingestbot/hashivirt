@@ -1,0 +1,43 @@
+ssh01:
+  memory: 1024
+  cpus: 2
+  disk: 10
+
+web01:
+  memory: 1024
+  cpus: 2
+  disk: 10
+
+proxy01:
+  memory: 2048
+  cpus: 2
+  disk: 10
+
+proxy02:
+  memory: 2048
+  cpus: 2
+  disk: 10
+
+proxy03:
+  memory: 2048
+  cpus: 2
+  disk: 10
+
+flicker01:
+  memory: 4096
+  cpus: 4
+  disk: 50
+
+casa02:
+  memory: 4096
+  cpus: 2
+  disk: 40
+
+devbox01:
+  memory: 1024
+  cpus: 2
+
+devbox02:
+  memory: 1024
+  cpus: 2
+
