@@ -1,3 +1,8 @@
+haha91:
+  memory: 4096
+  cpus: 4
+  disk: 30
+
 ssh01:
   memory: 1024
   cpus: 2

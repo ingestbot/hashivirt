@@ -35,8 +35,15 @@ Vagrant.configure("2") do |config|
 
   myhostnames.each do |i, x|
 
-    # Apply defaults, then override with host-specific settings
-    resources = DEFAULT_RESOURCES.merge(vm_resources.fetch(i, {}))
+    # Get host-specific resources from YAML.
+    # YAML gives us string keys, so convert them to symbols.
+    host_resources = vm_resources.fetch(i, {}).transform_keys(&:to_sym)
+
+    # Apply defaults, then override with host-specific settings.
+    resources = DEFAULT_RESOURCES.merge(host_resources)
+
+    # Debug output so we can verify the values being passed to libvirt.
+    # puts "DEBUG #{i}: #{resources.inspect}"
 
     config.vm.define :"#{i}" do |subconfig|
 
@@ -50,6 +57,7 @@ Vagrant.configure("2") do |config|
       subconfig.ssh.password = "ubuntu"
 
       subconfig.vm.allow_fstab_modification = false
+
       subconfig.vm.synced_folder ".", "/vagrant", disabled: true
 
       subconfig.vm.network :public_network,
@@ -57,7 +65,7 @@ Vagrant.configure("2") do |config|
         :mode => "bridge",
         :type => "bridge"
 
-      subconfig.vm.provider :libvirt do |v, override|
+      subconfig.vm.provider :libvirt do |v|
         v.default_prefix = ""
         v.disk_bus = "virtio"
         v.driver = "kvm"
