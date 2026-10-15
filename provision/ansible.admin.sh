@@ -19,5 +19,8 @@ http_proxy="http://proxy.sfio.win:8118"
 https_proxy="http://proxy.sfio.win:8118"
 EOF
 
+# disable cloud-init
+touch /etc/cloud/cloud-init.disabled
+
 ## 20261013 - This should be temporary until new box image is created
 sed -i 's/^[#[:space:]]*DNSSEC=.*/DNSSEC=False/' /etc/systemd/resolved.conf
