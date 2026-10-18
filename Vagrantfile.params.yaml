@@ -36,7 +36,7 @@ flicker01:
 casa02:
   memory: 4096
   cpus: 2
-  disk: 20
+  disk: 15
 
 devbox01:
   memory: 1024
