@@ -5,11 +5,16 @@ export DEBIAN_FRONTEND=noninteractive
 mkdir /etc/ssh/authorized_keys
 chmod 755 /etc/ssh/authorized_keys
 
+##
+## The public key is copied to /tmp via Vagrantfile. Let's
+## now move this into place. 
+##
 mv /tmp/ansible.admin /etc/ssh/authorized_keys/ansible.admin
 
+chmod 400 /etc/ssh/authorized_keys/ansible.admin
 chown ansible.admin /etc/ssh/authorized_keys/ansible.admin
 chgrp ansible.admin /etc/ssh/authorized_keys/ansible.admin
-chmod 400 /etc/ssh/authorized_keys/ansible.admin
+
 echo 'AuthorizedKeysFile /etc/ssh/authorized_keys/%u' > /etc/ssh/sshd_config.d/00-provision_tmp.conf
 
 systemctl restart ssh
@@ -23,4 +28,4 @@ EOF
 touch /etc/cloud/cloud-init.disabled
 
 ## 20261013 - This should be temporary until new box image is created
-sed -i 's/^[#[:space:]]*DNSSEC=.*/DNSSEC=False/' /etc/systemd/resolved.conf
+# sed -i 's/^[#[:space:]]*DNSSEC=.*/DNSSEC=False/' /etc/systemd/resolved.conf
